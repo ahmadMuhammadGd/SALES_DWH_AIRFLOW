@@ -22,8 +22,6 @@ class Mysql_connector:
         self.connector_obj = connection
         self.cursor = connection.cursor()
         return connection
-    
-
 
     def execute_sql(self, sql_statement: str, params: tuple | list | dict = None):
         statements = sqlparse.split(sql_statement)

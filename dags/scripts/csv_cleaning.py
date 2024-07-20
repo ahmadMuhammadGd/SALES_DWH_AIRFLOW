@@ -1,5 +1,5 @@
 import pandas as pd
-from modules.data_processing import pd_cleaner
+from dags.src.data_processing import pd_cleaner
 import json
 
 class CSV_source_cleaner:

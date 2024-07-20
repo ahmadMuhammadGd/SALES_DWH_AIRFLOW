@@ -2,8 +2,8 @@ import os
 from airflow import DAG
 from datetime import datetime, timedelta
 from airflow.operators.python import PythonOperator
-from scripts.global_var import _LANDED, _PROCESSED, _CLEANED, _MYSQL_CSVS_DIR, _SQL_TABLES_INIT, _SQL_STAGING, _SQL_TRANSFORM_LOAD, _SQL_UPDATE_VIEW
-from modules.airflow_file_handler import Read_landing
+from DAGs.scripts.csv_global_var import _LANDED, _PROCESSED, _CLEANED, _MYSQL_CSVS_DIR, _SQL_TABLES_INIT, _SQL_STAGING, _SQL_TRANSFORM_LOAD, _SQL_UPDATE_VIEW
+from src.airflow_file_handler import Read_landing
 from scripts.csv_cleaning import CSV_source_cleaner
 from scripts.mysql_dwh import dwh_init_tables, dwh_stage, dwh_transform_load, dwh_update_view
 import shutil

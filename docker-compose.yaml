@@ -51,8 +51,8 @@ x-airflow-common:
     AIRFLOW__CORE__TEST_CONNECTION: 'Enabled'
     AIRFLOW__API__AUTH_BACKEND: 'airflow.api.auth.backend.basic_auth'
   volumes:
-    - ./DAGs:/opt/airflow/dags
-    - ./LOGs:/opt/airflow/logs
+    - ./dags:/opt/airflow/dags
+    - ./logs:/opt/airflow/logs
     - ./STAGES:/opt/airflow/STAGES 
     - ./SQL-files:/opt/airflow/SQL_files
   user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
@@ -62,6 +62,17 @@ x-airflow-common:
 
 
 services:
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - "./data:/data/db"
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
   postgres:
     image: postgres:13
     environment:

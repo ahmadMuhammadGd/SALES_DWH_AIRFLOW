@@ -5,7 +5,7 @@ _MYSQL_CSVS_DIR = "/CLEANED"
 
 _SQL_FILES_PATH = path.join(_AIRFLOW_WORKING_DIR, "SQL_files")
 _PATH_SQL_FILE_SCHEME_INIT = path.join(_SQL_FILES_PATH, "dwh-tables-init.sql")
-_PATH_SQL_FILE_STAGING = path.join(_SQL_FILES_PATH, "staging.sql")
+_PATH_SQL_FILE_STAGING = path.join(_SQL_FILES_PATH, "stage_csv.sql")
 _PATH_SQL_FILE_TRANSFORM_THEN_LOAD = path.join(_SQL_FILES_PATH, "transform_load.sql")
 _PATH_SQL_UPDATE_VIEW = path.join(_SQL_FILES_PATH, "update_view.sql")
 
@@ -32,3 +32,5 @@ def load_sql_files():
     with open(_PATH_SQL_UPDATE_VIEW, 'r') as file:
         _SQL_UPDATE_VIEW = file.read()
 load_sql_files()
+
+
