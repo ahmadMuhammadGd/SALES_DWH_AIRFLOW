@@ -5,16 +5,18 @@ db_name = 'transactions'
 collection_name = 'invoices'
 transformed_ELT_view_name = 'invioce_view'
 
-uri = "mongodb://root:example@localhost:27017/" #use if you are running in localhost
-# uri = "mongodb://root:example@mongo:27017/"   #use if yout are running in docker compos
+# uri = "mongodb://root:example@localhost:27017/" #use if you are running in localhost
+uri = "mongodb://root:example@mongo:27017/"   #use if yout are running in docker compos
 
-client = MongoClient(uri)
-db = client[db_name]
-collection = db[collection_name]
-collection_names = db.list_collection_names()
+class MongoDBclientData:
+    def __init__(self):
+        self.client = MongoClient(uri)
+        self.db = self.client[db_name]
+        self.collection = self.db[collection_name]
+        self.collection_names = self.db.list_collection_names()
 
 #mongo staging destination
-target_table_name = 'CSV_STAGING'
+# target_table_name = 'CSV_STAGING'
 MysqlMongoMap = [
     ('invoice_id',      'invoice_id'        ),
     ('client_fname',    'first_name'        ),
@@ -27,5 +29,7 @@ MysqlMongoMap = [
     ('amount',          'quantity'          ),
     ('order_date',      'date'              ),
     ('order_time',      'time'              ),
-    ('payment_method',  'payement_methos'   )
+    ('payment_method',  'payement_methos'   ),
+    ('branch_name',     'branch_name'       ),
+    ('salesman_fname',  'salesman_fname'    ),
 ]

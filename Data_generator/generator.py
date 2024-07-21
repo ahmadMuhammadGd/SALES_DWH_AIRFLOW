@@ -30,7 +30,6 @@ class FakeData:
         self.product_info =                         FAKE.product()
         self.customer_info =                        FAKE.customer()
         self.branch_info =                          FAKE.branch()
-
         self.invoice_id =                           int(random.randint(100, 6000))
         self.city =                                 self.branch_info["city"]
         self.branch =                               self.branch_info["branch"]
@@ -76,7 +75,6 @@ class CSV_fake:
     def generate_fake_csv(self) -> pd.DataFrame:
         columns = self.faker.generate_fake_row().keys()
         data_dict = {column: [] for column in columns}
-
         for _ in range(self.row_n):
             fake_row_dict = self.faker.generate_fake_row()
             for key, value in fake_row_dict.items():
@@ -114,6 +112,15 @@ class Json_fake:
             })
         
         return result
+    
+    def _fill_invoice_template(self, products) -> dict:
+        return {
+        "invoice_id":                   self.faker.invoice_id,
+        "payement_method":              random.choice(['Credit Card', 'E-wallet']),
+        "products":                     products,
+        "date":                         self.faker.date,
+        "time":                         self.faker.time
+        }
         
     def generate_fake_json(self) -> list:
         result = []
@@ -121,17 +128,10 @@ class Json_fake:
         for _ in range(self.n):
             user_info = self._get_user_info()
             products = self._get_orders_info()
-            invoice_id = self.faker.invoice_id
+            invoice = self._fill_invoice_template(products)
             
             user_exists = next((user for user in result if user["user"]["username"] == user_info["username"]), None)
 
-            invoice = {
-                    "invoice_id":                   invoice_id,
-                    "payement_method":              random.choice(['Credit Card', 'E-wallet']),
-                    "products":                     products,
-                    "date":                         self.faker.date,
-                    "time":                         self.faker.time
-            }
             if user_exists:
                 user_exists["invoices"].append(invoice)
             else:

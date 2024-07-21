@@ -1,5 +1,5 @@
 import pandas as pd
-from dags.src.data_processing import pd_cleaner
+from common.modules.data_processing import pd_cleaner
 import json
 
 class CSV_source_cleaner:
@@ -80,13 +80,3 @@ class CSV_source_cleaner:
     def export_table_schema(self, output_path:str):
         with open(output_path, 'w') as f:
             f.write(self.table_schema)
-            
-# Example usage:
-# _PATH = "STAGES/LANDED/2024-06-20 17:56:33.772837.csv"
-# cleaner = CSV_source_cleaner(_PATH)
-# cleaner.clean()
-# cleaner.save_cleaned_data("cleaned_data.csv")
-# cleaner.export_json_logs("json_logs.json")
-# cleaner.export_table_schema("schema.txt")
-# print(cleaner.json_logs)
-# print(cleaner.table_schema)

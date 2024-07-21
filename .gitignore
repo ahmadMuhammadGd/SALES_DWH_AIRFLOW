@@ -7,3 +7,5 @@ LOGs/*
 test.py
 mysql-compose.yaml
 data
+__init__.py
+logs

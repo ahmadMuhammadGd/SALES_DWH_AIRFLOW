@@ -54,7 +54,6 @@ x-airflow-common:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./STAGES:/opt/airflow/STAGES 
-    - ./SQL-files:/opt/airflow/SQL_files
   user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
   depends_on:
     postgres:

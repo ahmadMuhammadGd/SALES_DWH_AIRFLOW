@@ -1,4 +1,4 @@
-DROP SCHEMA IF EXISTS DWH;
+-- DROP SCHEMA IF EXISTS DWH;
 
 CREATE SCHEMA IF NOT EXISTS DWH;
 
@@ -46,8 +46,7 @@ CREATE TABLE IF NOT EXISTS ETL_BATCH (
     batch_id                INTEGER PRIMARY KEY AUTO_INCREMENT,
     source_name             TEXT,
     start_time              DATETIME,
-    finish_time             DATETIME,
-    ETL_errors              JSON
+    finish_time             DATETIME
 );
 
 CREATE TABLE IF NOT EXISTS BRANCHES (
@@ -79,3 +78,24 @@ CREATE TABLE IF NOT EXISTS PRODUCT_ORDER (
     FOREIGN KEY (invoice_id) REFERENCES ORDERS_FACT(invoice_id),
     FOREIGN KEY (product_id) REFERENCES PRODUCTS(product_id)
 );
+
+CREATE TABLE IF NOT EXISTS CSV_staging(
+invoice_id          INTEGER,
+branch_name         TEXT,
+city                TEXT,
+client_fname        TEXT,
+client_lname        TEXT,
+salesman_fname      TEXT,
+salesman_lname      TEXT,
+client_email        TEXT,
+client_phone        TEXT,
+product_name        TEXT,
+product_line        TEXT,
+product_price       FLOAT,
+amount              INTEGER,
+order_date          DATE,
+order_time          TIME,
+payment_method      TEXT
+);
+
+CREATE TABLE Mongo_Staging LIKE CSV_staging;

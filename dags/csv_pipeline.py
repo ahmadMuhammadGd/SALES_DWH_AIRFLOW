@@ -1,11 +1,13 @@
-import os
+import sys, os 
+sys.path.insert(1, os.path.join(os.getcwd()))
+
 from airflow import DAG
 from datetime import datetime, timedelta
 from airflow.operators.python import PythonOperator
-from DAGs.scripts.csv_global_var import _LANDED, _PROCESSED, _CLEANED, _MYSQL_CSVS_DIR, _SQL_TABLES_INIT, _SQL_STAGING, _SQL_TRANSFORM_LOAD, _SQL_UPDATE_VIEW
-from src.airflow_file_handler import Read_landing
-from scripts.csv_cleaning import CSV_source_cleaner
-from scripts.mysql_dwh import dwh_init_tables, dwh_stage, dwh_transform_load, dwh_update_view
+from dags.common.global_vars.csv_global_var import _LANDED, _PROCESSED, _CLEANED, _MYSQL_CSVS_DIR
+from dags.common.modules.airflow_file_handler import Read_landing
+from dags.common.modules.dwhInterface import dwh_execute_SQL
+from dags.common.scripts.csv_cleaning import CSV_source_cleaner
 import shutil
 import logging
 import json
@@ -25,33 +27,42 @@ mysql_credentials = {
     "password": "root"
 }
 
-def init_tables_task():
-    dwh_init_tables(**mysql_credentials)
     
 def dwh_stage_task(**kwargs):
     cleaned_csv_file_path = kwargs['ti'].xcom_pull(key='cleaned_file_name')
     logging.info(f"FILE PATH TO BE STAGED:{cleaned_csv_file_path}")
-    dwh_stage(
-        (cleaned_csv_file_path,), 
+    dwh_execute_SQL(
+        f"""
+        USE DWH;
+        LOAD DATA INFILE '{cleaned_csv_file_path}'
+        INTO TABLE CSV_staging 
+        FIELDS TERMINATED BY ',' 
+        OPTIONALLY ENCLOSED BY '"' 
+        ESCAPED BY '"' 
+        LINES TERMINATED BY '\\n' 
+        IGNORE 1 LINES;
+        """, 
         **mysql_credentials
     )
 
 def dwh_transform_load_task(**kwargs):
-    logs = kwargs['ti'].xcom_pull(key='error_logs')
-    logs = json.dumps(logs)
+    # logs = kwargs['ti'].xcom_pull(key='error_logs')
+    # logs = json.dumps(logs)
     source_name = kwargs['ti'].xcom_pull(key='src_file_name')
-    params = {
-        'ETL_errors': logs, 
-        'source_name': source_name
-    }
-    dwh_transform_load(
-        params=params, 
+    # params = {
+    #     'ETL_errors': logs, 
+    #     'source_name': source_name
+    # }
+    dwh_execute_SQL(
+        f"USE DWH; CALL CSV_transformLoad('{source_name}');", 
         **mysql_credentials
     )
     
 def dwh_update_view_task():
-    dwh_update_view(**mysql_credentials)
-    
+    dwh_execute_SQL(
+        f"USE DWH;\nCALL updateViews();", 
+        **mysql_credentials
+    )    
 
 def check_files(**kwargs):
     reader = Read_landing(_LANDED)
@@ -83,7 +94,7 @@ def move_processed_file(**kwargs):
 
 
 with DAG(
-    dag_id="pipeline",
+    dag_id="csv_pipeline",
     schedule_interval=timedelta(days=1),
     start_date=datetime(2021, 1, 1),
     catchup=False,
@@ -121,9 +132,8 @@ with DAG(
         python_callable=dwh_update_view_task
     )
     
-    # Define task dependencies
-    # task_init_tables >> task_clean
     task_check_files >> task_clean
-    task_clean >> task_stage >> task_transform_load
+    task_clean >> task_stage 
+    task_stage >> task_transform_load
     task_transform_load >> task_move_to_processed
     task_transform_load >> task_update_vw

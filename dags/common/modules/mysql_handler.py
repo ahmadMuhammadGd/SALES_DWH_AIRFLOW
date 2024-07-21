@@ -34,7 +34,7 @@ class Mysql_connector:
                 logging.info(statement)
                 if params and (re.findall('%\(([^)]+)\)s', statement)) or ('%s' in statement):
                     logging.debug('found parameter!')
-                    self.cursor.execute(statement, params)
+                    self.cursor.executemany(statement, params)
                 else:
                     self.cursor.execute(statement)
 
