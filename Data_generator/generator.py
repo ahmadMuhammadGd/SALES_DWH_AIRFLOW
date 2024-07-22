@@ -43,7 +43,7 @@ class FakeData:
         self.product_name =                         self.product_info["product"]
         self.unit_price =                           self.product_info["price"]
         self.quantity =                             random.randint(1, 10)
-        self.date =                                 datetime.datetime.today().strftime('%Y-%m-%d')
+        self.date =                                 FAKE.date_between(start_date=datetime.date(2023, 1, 1))
         self.time =                                 FAKE.time(pattern='%H:%M:%S')
         self.payment_method =                       random.choice(['Cash', 'Credit Card', 'E-wallet'])
 
@@ -130,10 +130,9 @@ class Json_fake:
             products = self._get_orders_info()
             invoice = self._fill_invoice_template(products)
             
-            user_exists = next((user for user in result if user["user"]["username"] == user_info["username"]), None)
-
+            user_exists = [user for user in result if user["user"]["username"] == user_info["username"]]
             if user_exists:
-                user_exists["invoices"].append(invoice)
+                user_exists[0]["invoices"].append(invoice)
             else:
                 result.append({
                     "user": user_info,
