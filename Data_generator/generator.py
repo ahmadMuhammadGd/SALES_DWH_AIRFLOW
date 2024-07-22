@@ -43,7 +43,7 @@ class FakeData:
         self.product_name =                         self.product_info["product"]
         self.unit_price =                           self.product_info["price"]
         self.quantity =                             random.randint(1, 10)
-        self.date =                                 FAKE.date_between(start_date=datetime.date(2023, 1, 1))
+        self.date =                                 FAKE.date_between(start_date=datetime.date(2023, 1, 1)).isoformat()
         self.time =                                 FAKE.time(pattern='%H:%M:%S')
         self.payment_method =                       random.choice(['Cash', 'Credit Card', 'E-wallet'])
 
