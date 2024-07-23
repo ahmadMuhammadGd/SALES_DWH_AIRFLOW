@@ -189,7 +189,6 @@ MongoDB pipeline simply unwind it's data untile it matches staging tables schema
 │   ├── csv_pipeline.py
 │   ├── generate_testData.py
 │   ├── mongodb_pipeline.py
-│   └── test.py
 ├── dataGenerator
 ├── docker-compose.yaml
 ├── dockerfile
