@@ -1,5 +1,6 @@
 USE DWH;
 DELIMITER //
+DROP PROCEDURE IF EXISTS updateViews;
 CREATE PROCEDURE IF NOT EXISTS updateViews() BEGIN
     CREATE OR REPLACE VIEW vw_clients_info AS
     SELECT 
@@ -11,7 +12,6 @@ CREATE PROCEDURE IF NOT EXISTS updateViews() BEGIN
     FROM CLIENTS c
     LEFT JOIN CLIENT_PHONES cp ON c.client_id = cp.person_id
     LEFT JOIN CLIENT_EMAILS ce ON c.client_id = ce.person_id;
-
     CREATE OR REPLACE VIEW vw_current_product_prices AS
     SELECT 
         product_id,
@@ -22,8 +22,6 @@ CREATE PROCEDURE IF NOT EXISTS updateViews() BEGIN
         date_from
     FROM PRODUCTS 
     WHERE is_current = TRUE;
-
-
     CREATE OR REPLACE VIEW vw_orders_details AS
     SELECT DISTINCT
         ORDERS_FACT.invoice_id,
@@ -45,10 +43,6 @@ CREATE PROCEDURE IF NOT EXISTS updateViews() BEGIN
     LEFT JOIN SALESMEN ON SALESMEN.salesman_id = ORDERS_FACT.salesman_id
     LEFT JOIN CLIENTS ON CLIENTS.client_id = ORDERS_FACT.client_id
     LEFT JOIN PRODUCTS ON PRODUCT_ORDER.product_id = PRODUCTS.product_id
-    AND
-    ORDERS_FACT.order_date >= PRODUCTS.date_from
-    AND 
-    ORDERS_FACT.order_date < PRODUCTS.date_to
     GROUP BY
         ORDERS_FACT.invoice_id,
         client_name,

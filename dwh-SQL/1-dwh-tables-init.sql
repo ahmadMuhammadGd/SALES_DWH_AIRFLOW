@@ -98,4 +98,4 @@ order_time          TIME,
 payment_method      TEXT
 );
 
-CREATE TABLE Mongo_Staging LIKE CSV_staging;
+CREATE TABLE IF NOT EXISTS Mongo_Staging LIKE CSV_staging;
