@@ -54,11 +54,11 @@ x-airflow-common:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./STAGES:/opt/airflow/STAGES 
+    - ./dwh-SQL:/opt/airflow/dwh-SQL
   user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
   depends_on:
     postgres:
       condition: service_healthy
-
 
 services:
   mongo:
@@ -71,6 +71,10 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      retries: 5
 
   postgres:
     image: postgres:13
@@ -130,6 +134,7 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
       - ./STAGES/CLEANED:/CLEANED
+      - ./dwh-SQL:/docker-entrypoint-initdb.d/
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 20s
@@ -143,7 +148,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - ./SQL-files:/SQL-files
+      - ./dwh-SQL:/dwh-SQL
     ports:
       - 3000:3000
       - 3001:3001
