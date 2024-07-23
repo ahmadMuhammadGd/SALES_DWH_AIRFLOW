@@ -1,0 +1,16 @@
+Invoice_ID,Branch,City,First_name,Last_name,Salesman_firstname,Salesman_lastname,Email,Phone_number,Product,Product_line,Unit_price,Quantity,Date,Time,Payment
+2852,C,Chicago,Alice,Johnson,Jack,Red,alice.johnson@example.com,456-789-1234,Jeans,Clothing,49.99,8,2023-02-20,00:05:00,Credit Card
+5311,,Chicago,John,Doe,Jack,Red,john.doe@example.com,123-456-7890,Pizza,Food,9.99,4,2024-06-26,20:16:30,Credit Card
+1982,A,New York,John,Doe,Harry,White,john.doe@example.com,123-456-7890,Jeans,Clothing,60.0,8,2024-07-12,12:16:24,Credit Card
+5783,,New York,Jane,Smith,Tom,Brown,jane.smith@example.com,987-654-3210,Smartphone,Electronics,699.99,2,2023-04-08,08:20:25,Cash
+3949,B,Los Angeles,Alice,Johnson,Chris,Green,alice.johnson@example.com,456-789-1234,Pizza,Food,9.99,2,2023-03-03,11:59:45,Credit Card
+4894,A,New York,John,Doe,Tom,Brown,john.doe@example.com,123-456-7890,Pizza,Food,9.99,4,2023-08-13,04:14:22,E-wallet
+3573,A,New York,John,Doe,Tom,Brown,john.doe@example.com,123-456-7890,Jeans,Clothing,49.99,10,2023-10-29,21:05:50,E-wallet
+5904,C,Chicago,John,Doe,Jack,Red,john.doe@example.com,123-456-7890,Smartphone,Electronics,699.99,6,2024\02-18,15:59:32,E-wallet
+5745,C,Chicago,John,Doe,Sam,Blue,john.doe@example.com,123-456-7890,Jeans,Clothing,49.99,8,2023-11-29,01:55:02,Credit Card
+4989,A,New York,Jane,Smith,Harry,White,jane.smith@example.com,987-654-3210,Jeans,Clothing,-60.0,5,2024-02-08,05:56:23,Cash
+5803,A,New York,Alice,Johnson,Tom,Brown,alice.johnson@example.com,456-789-1234,Smartphone,Electronics,699.99,7,2024-04-11,20:44:29,E-wallet
+1430,C,Chicago,Alice,Johnson,Jack,Red,alice.johnson@example.com,456-789-1234,Jeans,Clothing,49.99,5,2023-11-08,23:52:57,E-wallet
+3950,A,New York,Alice,Johnson,Harry,White,alice.johnson@example.com,456-789-1234,Smartphone,Electronics,699.99,5,2023-05-10,13:49:29,Cash
+4790,B,Los Angeles,Alice,Johnson,James,Black,alice.johnson@example.com,456-789A-1234,Jeans,Clothing,49.99,9,2023-06-28,18:39:23,Credit Card
+1251,A,New York,John,Doe,Harry,White,john.doe@example.com,123-456-7890,Jeans,Clothing,49.99,10,2023-01-05,22:01:13,Cash

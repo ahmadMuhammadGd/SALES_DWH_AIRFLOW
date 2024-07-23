@@ -1,0 +1,12 @@
+[
+    {
+        "index": 7,
+        "column": "Branch",
+        "error_type": "missing_value"
+    },
+    {
+        "index": 2,
+        "column": "Date",
+        "error_type": "invalid_date"
+    }
+]

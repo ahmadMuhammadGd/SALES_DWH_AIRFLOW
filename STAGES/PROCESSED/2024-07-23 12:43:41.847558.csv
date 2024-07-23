@@ -1,0 +1,16 @@
+Invoice_ID,Branch,City,First_name,Last_name,Salesman_firstname,Salesman_lastname,Email,Phone_number,Product,Product_line,Unit_price,Quantity,Date,Time,Payment
+214,C,Chicago,Alice,Johnson,Sam,Blue,alice.johnson@example.com,456-789-1234,Smartphone,Electronics,699.99,8,2023-04-07,04:22:09,Credit Card
+1700,B,Los Angeles,John,Doe,James,Black,john.doe@example.com,123-456-7890,Smartphone,Electronics,699.99,5,2023-11-29,00:40:07,Credit Card
+2662,A,New York,Alice,Johnson,Tom,Brown,alice.johnson@example.com,456-789-1234,Jeans,Clothing,60.0,5,202403-02,01:25:37,Cash
+2043,A,New York,Alice,Johnson,Harry,White,alice.johnson@example.com,456-789-1234,Smartphone,Electronics,699.99,3,2024-03-24,03:05:28,E-wallet
+1837,C,Chicago,John,Doe,Jack,Red,john.doe@example.com,123-456-7890,Smartphone,Electronics,699.99,6,2023-02-02,15:02:53,Credit Card
+2304,C,Chicago,John,Doe,Jack,Red,john.doe@example.com,123-456-7890,Smartphone,Electronics,699.99,3,2024-03-25,14:40:56,Credit Card
+636,C,Chicago,Alice,Johnson,Sam,Blue,alice.johnson@example.com,456-789-1234,Pizza,Food,9.99,2,2023-08-20,07:01:49,E-wallet
+146,,Los Angeles,Jane,Smith,James,Black,jane.smith@example.com,987-654-X3210,Smartphone,Electronics,699.99,6,2023-06-26,23:16:32,Credit Card
+2094,A,New York,Alice,Johnson,Tom,Brown,alice.johnson@example.com,456-789-1234,Pizza,Food,9.99,6,2023-07-18,10:06:12,Cash
+4993,C,Chicago,Jane,Smith,Jack,Red,jane.smith@example.com,987-654-3210,Pizza,Food,9.99,10,2023-05-01,00:44:47,Cash
+5299,B,Los Angeles,Jane,Smith,Chris,Green,jane.smith@example.com,987-654-3210,Smartphone,Electronics,699.99,9,2023-09-04,07:46:22,Credit Card
+4670,C,Chicago,John,Doe,Sam,Blue,john.doe@example.com,123-456-7890,Jeans,Clothing,60.0,8,2024-01-21,20:09:57,Credit Card
+3640,A,New York,John,Doe,Tom,Brown,john.doe@example.com,123-456-7890,Smartphone,Electronics,699.99,3,2024-02-01,23:53:12,Cash
+5389,A,New York,Alice,Johnson,Harry,White,alice.johnson@example.com,456-789-1234,Jeans,Clothing,49.99,6,2023-06-21,16:22:34,E-wallet
+4927,B,Los Angeles,Jane,Smith,Chris,Green,jane.smith@example.com,987-654-3210,Smartphone,Electronics,699.99,3,2023-01-05,17:20:04,Cash

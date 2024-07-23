@@ -1,0 +1,27 @@
+[
+    {
+        "index": 1,
+        "column": "Branch",
+        "error_type": "missing_value"
+    },
+    {
+        "index": 3,
+        "column": "Branch",
+        "error_type": "missing_value"
+    },
+    {
+        "index": 7,
+        "column": "Date",
+        "error_type": "invalid_date"
+    },
+    {
+        "index": 13,
+        "column": "Phone_number",
+        "error_type": "invalid_phone"
+    },
+    {
+        "index": 9,
+        "column": "Unit_price",
+        "error_type": "negative_value"
+    }
+]
