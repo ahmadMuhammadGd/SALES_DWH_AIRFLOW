@@ -189,6 +189,7 @@ MongoDB pipeline simply unwind it's data untile it matches staging tables schema
 │   ├── csv_pipeline.py
 │   ├── generate_testData.py
 │   ├── mongodb_pipeline.py
+│   └── test.py
 ├── dataGenerator
 ├── docker-compose.yaml
 ├── dockerfile
@@ -204,7 +205,9 @@ MongoDB pipeline simply unwind it's data untile it matches staging tables schema
     │   ├── cleaned_2024-07-23 12:43:41.847558.csv
     │   └── cleaned_2024-07-23 14:40:20.065539.csv
     ├── LANDED
-    │   ├── 2024-07-23 12:43:41.847558.csv
-    │   └── 2024-07-23 14:40:20.065539.csv
     └── PROCESSED
+        ├── 2024-07-23 12:43:41.847558.csv
+        ├── 2024-07-23 14:40:20.065539.csv
+        ├── logs_2024-07-23 12:43:41.847558.json
+        └── logs_2024-07-23 14:40:20.065539.json
 ```
