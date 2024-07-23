@@ -115,7 +115,7 @@ Invoice_ID,Branch,City,First_name,Last_name,Salesman_firstname,Salesman_lastname
   ]
 }
 ```
-# The Dataware House
+# The Data wareHouse
 ![image](./ASSETS/erd.png)
 This Data Warehouse (DWH) schema is designed to manage and analyze sales data. It includes dimension tables for clients, salesmen, products, prices, branches, and ETL batches, which store descriptive attributes. The fact table, ORDERS_FACT, stores transactional data related to orders. Additional tables for error codes, client contact details, and product orders support data quality and relationship management.
 # Pipelines
