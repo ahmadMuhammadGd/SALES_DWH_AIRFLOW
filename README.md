@@ -2,6 +2,7 @@
 
 ![data pipeline](./ASSETS/workflow.gif)
 This repository implements a simple data pipeline for csv and MongoDB data sources using Airflow for worfkflow management and data warehouse concepts such as slowly changing dimensions, data cleaning, and analytical views.
+
 # What is New
 * Utilized MySQL stored procedures in `ETL` process.
 * DWH database is initialized automaticly on container build.
@@ -15,7 +16,13 @@ This repository implements a simple data pipeline for csv and MongoDB data sourc
 * Apply the slowly changing dimension technique to track products prices changes.
 * Utilize Airflow for orchestration and automate cleaning, loading, and error log reports.
 * Containerizing the pipeline using docker compose.
-
+# Run The Project
+Clone the repo and run these commands in the working directory.
+```bash
+mkdir dags logs
+echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_GID=0" > .env
+docker compose up airflow-init && docker compose up
+```
 # Source Data Examples
 ## CSV Source
 ```
